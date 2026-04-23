@@ -4,3 +4,11 @@ INFO:     Started reloader process [30544] using StatReload
 INFO:     Started server process [30160]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'apps\api\app\api.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [30160]
+INFO:     Started server process [36436]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

@@ -33,7 +33,6 @@ export function SocialRingGamePage() {
   const stardust = useGameStore((state) => state.stardust);
   const bonusStreak = useGameStore((state) => state.bonusStreak);
   const vaultCharge = useGameStore((state) => state.vaultCharge);
-  const vaultCrates = useGameStore((state) => state.vaultCrates);
   const selectedPlanet = useGameStore((state) => state.selectedPlanet);
   const structures = useGameStore((state) => state.structures);
   const planetMastery = useGameStore((state) => state.planetMastery);
@@ -260,10 +259,6 @@ export function SocialRingGamePage() {
               <span>Серия бонусов</span>
               <strong>{bonusStreak}x</strong>
             </div>
-            <div className="metric-chip">
-              <span>Контейнеры</span>
-              <strong>{vaultCrates}</strong>
-            </div>
           </div>
         </div>
       </section>
@@ -284,16 +279,13 @@ export function SocialRingGamePage() {
                       : "Забег завершен"}
             </h3>
             <p className="text-white/62">{status}</p>
-            <div className="flex flex-wrap gap-3">
-              <button className="primary-button" onClick={launchRun} disabled={phase === "showing" || phase === "input"}>
-                {phase === "complete" ? "Запустить снова" : "Старт ринга"}
-              </button>
-              {canResetRun ? (
+            {canResetRun ? (
+              <div className="flex flex-wrap gap-3">
                 <button className="secondary-button" onClick={resetRun}>
                   Сбросить
                 </button>
-              ) : null}
-            </div>
+              </div>
+            ) : null}
 
             <div className="signal-progress">
               {progressDots.map((isActive, index) => (
@@ -324,23 +316,8 @@ export function SocialRingGamePage() {
           </div>
         </article>
 
-        <article className="surface-panel">
+        <article className="surface-panel signal-stage-panel">
           <div className="signal-stage">
-            <div className="signal-stage__ring" />
-            <div className="signal-stage__core">
-              <span>Социальное кольцо</span>
-              <strong>
-                {phase === "showing"
-                  ? "Смотрите"
-                  : phase === "input"
-                    ? "Повтор"
-                    : phase === "transition"
-                      ? "Загрузка"
-                      : phase === "complete"
-                        ? "Награда"
-                        : "Синхр."}
-              </strong>
-            </div>
             <div className="signal-stage__pads">
               {SIGNAL_PADS.map((pad) => (
                 <button
@@ -354,6 +331,11 @@ export function SocialRingGamePage() {
                 </button>
               ))}
             </div>
+          </div>
+          <div className="signal-stage__launch">
+            <button className="primary-button" onClick={launchRun} disabled={phase === "showing" || phase === "input"}>
+              {phase === "complete" ? "Запустить снова" : "Старт ринга"}
+            </button>
           </div>
         </article>
       </section>

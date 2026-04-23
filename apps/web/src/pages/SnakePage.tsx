@@ -107,6 +107,8 @@ export function SnakePage() {
   );
   const canPauseRun = isStarted && !isPaused && !isOver;
   const canResetRun = !isPaused && (isStarted || isOver || score > 0);
+  const launchButtonDisabled = isStarted && !isPaused && !isOver;
+  const launchButtonLabel = !isStarted || isOver ? "Начать забег" : isPaused ? "Продолжить" : "Забег идет";
   const claimMutation = useMutation({
     mutationFn: async () => {
       const event = await api.ingest(api.buildEvent(userId, score >= 4 ? "partner" : "nonPartner"));
@@ -307,9 +309,6 @@ export function SnakePage() {
             </h3>
             <p className="text-white/62">{status}</p>
             <div className="flex flex-wrap gap-3">
-              <button className="primary-button" onClick={launchRun} disabled={isStarted && !isPaused && !isOver}>
-                {!isStarted || isOver ? "Начать забег" : isPaused ? "Продолжить" : "Забег идет"}
-              </button>
               {canPauseRun ? (
                 <button className="secondary-button" onClick={togglePause}>
                   Пауза
@@ -357,7 +356,21 @@ export function SnakePage() {
             </div>
           </div>
         </article>
-        <article className="surface-panel">
+        <article className="surface-panel" data-testid="snake-board-panel">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-[24px] border border-white/8 bg-black/20 px-4 py-3">
+            <div className="space-y-1">
+              <p className="text-xs uppercase tracking-[0.25em] text-white/40">Поле игры</p>
+              <p className="text-sm text-white/60">Старт теперь рядом с сеткой, чтобы запускать забег было удобнее.</p>
+            </div>
+            <button
+              className="primary-button"
+              data-testid="snake-launch-button"
+              onClick={launchRun}
+              disabled={launchButtonDisabled}
+            >
+              {launchButtonLabel}
+            </button>
+          </div>
           <div className="snake-grid">
             {cells.map((cell) => (
               <div

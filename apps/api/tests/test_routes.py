@@ -47,6 +47,41 @@ def test_demo_login_simulate_and_profile_flow() -> None:
         assert payload["active_boosters"]
 
 
+def test_profile_deduplicates_active_boosters_by_category() -> None:
+    user_id = unique_user_id("u_booster")
+    with TestClient(app) as client:
+        client.post(
+            "/auth/demo-login",
+            json={"user_id": user_id, "display_name": "Booster Pilot", "segment": "student"},
+        )
+
+        for amount in (110, 125, 140):
+            simulate = client.post(
+                "/admin/simulate",
+                json={
+                    "event_type": "txn_posted",
+                    "event_id": f"evt_{uuid4().hex[:8]}",
+                    "user_id": user_id,
+                    "amount": amount,
+                    "merchant_id": "merchant_partner_food",
+                    "category": "food",
+                    "is_partner": True,
+                    "is_target_category": True,
+                    "device_mismatch": False,
+                    "multi_account_signal": False,
+                    "timestamp": datetime.now(UTC).isoformat(),
+                },
+            )
+            assert simulate.status_code == 200
+
+        profile = client.get("/galaxy/profile", params={"user_id": user_id})
+        assert profile.status_code == 200
+        active_boosters = profile.json()["active_boosters"]
+
+        assert len(active_boosters) == 1
+        assert active_boosters[0]["category"] == "food"
+
+
 def test_completed_quest_can_be_claimed() -> None:
     user_id = unique_user_id("u_claim")
     with TestClient(app) as client:

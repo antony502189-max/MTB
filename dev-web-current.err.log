@@ -1,0 +1,72 @@
+[2m04:01:25[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31merror while updating dependencies:
+Error: ENOENT: no such file or directory, open 'D:\MTB\node_modules\qrcode.react\lib\esm\index.js'
+    at async open (node:internal/fs/promises:639:25)
+    at async Object.readFile (node:internal/fs/promises:1249:14)
+    at async extractExportsData (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15346:24)
+    at async file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15092:27
+    at async Promise.all (index 6)
+    at async prepareEsbuildOptimizerRun (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15089:3)[39m
+[2m04:01:33[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31merror while updating dependencies:
+Error: ENOENT: no such file or directory, open 'D:\MTB\node_modules\qrcode.react\lib\esm\index.js'
+    at async open (node:internal/fs/promises:639:25)
+    at async Object.readFile (node:internal/fs/promises:1249:14)
+    at async extractExportsData (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15346:24)
+    at async file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15092:27
+    at async Promise.all (index 6)
+    at async prepareEsbuildOptimizerRun (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15089:3)[39m
+[2m04:02:09[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31merror while updating dependencies:
+Error: ENOENT: no such file or directory, open 'D:\MTB\node_modules\qrcode.react\lib\esm\index.js'
+    at async open (node:internal/fs/promises:639:25)
+    at async Object.readFile (node:internal/fs/promises:1249:14)
+    at async extractExportsData (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15346:24)
+    at async file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15092:27
+    at async Promise.all (index 6)
+    at async prepareEsbuildOptimizerRun (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15089:3)[39m
+[2m04:03:00[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31merror while updating dependencies:
+Error: ENOENT: no such file or directory, open 'D:\MTB\node_modules\qrcode.react\lib\esm\index.js'
+    at async open (node:internal/fs/promises:639:25)
+    at async Object.readFile (node:internal/fs/promises:1249:14)
+    at async extractExportsData (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15346:24)
+    at async file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15092:27
+    at async Promise.all (index 6)
+    at async prepareEsbuildOptimizerRun (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15089:3)[39m
+[2m04:07:01[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31merror while updating dependencies:
+Error: ENOENT: no such file or directory, open 'D:\MTB\node_modules\qrcode.react\lib\esm\index.js'
+    at async open (node:internal/fs/promises:639:25)
+    at async Object.readFile (node:internal/fs/promises:1249:14)
+    at async extractExportsData (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15346:24)
+    at async file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15092:27
+    at async Promise.all (index 6)
+    at async prepareEsbuildOptimizerRun (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15089:3)[39m
+[2m04:08:52[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31merror while updating dependencies:
+Error: ENOENT: no such file or directory, open 'D:\MTB\node_modules\qrcode.react\lib\esm\index.js'
+    at async open (node:internal/fs/promises:639:25)
+    at async Object.readFile (node:internal/fs/promises:1249:14)
+    at async extractExportsData (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15346:24)
+    at async file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15092:27
+    at async Promise.all (index 6)
+    at async prepareEsbuildOptimizerRun (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15089:3)[39m
+[2m04:09:25[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31merror while updating dependencies:
+Error: ENOENT: no such file or directory, open 'D:\MTB\node_modules\qrcode.react\lib\esm\index.js'
+    at async open (node:internal/fs/promises:639:25)
+    at async Object.readFile (node:internal/fs/promises:1249:14)
+    at async extractExportsData (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15346:24)
+    at async file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15092:27
+    at async Promise.all (index 6)
+    at async prepareEsbuildOptimizerRun (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15089:3)[39m
+[2m04:12:45[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31merror while updating dependencies:
+Error: ENOENT: no such file or directory, open 'D:\MTB\node_modules\qrcode.react\lib\esm\index.js'
+    at async open (node:internal/fs/promises:639:25)
+    at async Object.readFile (node:internal/fs/promises:1249:14)
+    at async extractExportsData (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15346:24)
+    at async file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15092:27
+    at async Promise.all (index 6)
+    at async prepareEsbuildOptimizerRun (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15089:3)[39m
+[2m05:03:06[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31merror while updating dependencies:
+Error: ENOENT: no such file or directory, open 'D:\MTB\node_modules\qrcode.react\lib\esm\index.js'
+    at async open (node:internal/fs/promises:639:25)
+    at async Object.readFile (node:internal/fs/promises:1249:14)
+    at async extractExportsData (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15346:24)
+    at async file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15092:27
+    at async Promise.all (index 6)
+    at async prepareEsbuildOptimizerRun (file:///D:/MTB/apps/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15089:3)[39m

@@ -83,6 +83,13 @@ def build_profile(session: Session, user_id: str) -> GalaxyProfileResponse:
         .where(BoosterWindow.user_id == user_id, BoosterWindow.status == "active")
         .order_by(desc(BoosterWindow.end_at))
     ).all()
+    unique_boosters: list[BoosterWindow] = []
+    seen_booster_categories: set[str] = set()
+    for booster in boosters:
+        if booster.category in seen_booster_categories:
+            continue
+        seen_booster_categories.add(booster.category)
+        unique_boosters.append(booster)
     quest_rows = session.execute(
         select(Quest, QuestProgress)
         .join(QuestProgress, Quest.quest_id == QuestProgress.quest_id)
@@ -117,7 +124,7 @@ def build_profile(session: Session, user_id: str) -> GalaxyProfileResponse:
                 "end_at": item.end_at,
                 "status": item.status,
             }
-            for item in boosters
+            for item in unique_boosters
         ],
         quests=[
             QuestOut(

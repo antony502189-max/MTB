@@ -13,6 +13,8 @@
     "@mtb/contracts": "0.1.0",
     "@tanstack/react-query": "^5.68.0",
     "framer-motion": "^12.5.0",
+    "jsqr": "^1.4.0",
+    "qrcode-generator": "^2.0.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.3.0",

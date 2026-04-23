@@ -17,7 +17,6 @@ vi.mock("@tanstack/react-query", () => ({
 vi.mock("@/lib/api", () => ({
   api: {
     claimVaultCrate: vi.fn(),
-    getBonusHistory: vi.fn(),
     getRewardLedger: vi.fn(),
     getGameSummary: vi.fn(),
   },
@@ -30,8 +29,7 @@ vi.mock("@/lib/game-store", () => ({
       bonusStreak: 1,
       vaultCharge: 0,
       vaultCrates: 2,
-      bonusHistory: [],
-      openVaultCrate: vi.fn(),
+      openBonusCrate: vi.fn(),
       planetMastery: {},
     }),
 }));
@@ -66,5 +64,12 @@ describe("RewardsPage", () => {
 
     expect(html).not.toContain("Журнал синхронизации");
     expect(html).not.toContain("Синхронизированная активность");
+  });
+
+  it("does not render local bonus history", () => {
+    const html = renderRewardsPage();
+
+    expect(html).not.toContain("История локальных бонусов");
+    expect(html).not.toContain("Каждый запуск прозрачен");
   });
 });

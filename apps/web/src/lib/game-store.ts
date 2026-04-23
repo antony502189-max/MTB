@@ -21,22 +21,6 @@ export interface ActionLogItem {
   createdAt: string;
 }
 
-export interface BonusHistoryItem {
-  id: string;
-  title: string;
-  detail: string;
-  planetCode: PlanetCode;
-  totalReward: number;
-  baseReward: number;
-  streakBonus: number;
-  masteryBonus: number;
-  performanceBonus: number;
-  focusBonus: number;
-  chargeGain: number;
-  cratesEarned: number;
-  createdAt: string;
-}
-
 type StructureMap = Record<PlanetCode, string[]>;
 type PlanetMasteryMap = Record<PlanetCode, number>;
 
@@ -58,7 +42,6 @@ interface GameState {
   planetMastery: PlanetMasteryMap;
   unlockedPlanets: PlanetUnlockMap;
   actionLog: ActionLogItem[];
-  bonusHistory: BonusHistoryItem[];
   completeOnboarding: (payload: {
     playerAlias: string;
     playerSegment: "student" | "first-jobber" | "freelancer";
@@ -111,10 +94,6 @@ function createId() {
 
 function appendActionLog(state: GameState, item: ActionLogItem) {
   return [item, ...state.actionLog].slice(0, 12);
-}
-
-function appendBonusHistory(state: GameState, item: BonusHistoryItem) {
-  return [item, ...state.bonusHistory].slice(0, 20);
 }
 
 function createUnlockLogItem(planetCode: PlanetCode, source: string, createdAt: string): ActionLogItem {
@@ -170,7 +149,6 @@ export const useGameStore = create<GameState>()(
       planetMastery: initialMastery,
       unlockedPlanets: INITIAL_UNLOCKED_PLANETS,
       actionLog: [],
-      bonusHistory: [],
       completeOnboarding: ({ playerAlias, playerSegment }) =>
         set((state) => ({
           onboardingComplete: true,
@@ -266,21 +244,6 @@ export const useGameStore = create<GameState>()(
             planetCode,
             createdAt,
           }),
-          bonusHistory: appendBonusHistory(state, {
-            id: createId(),
-            title,
-            detail,
-            planetCode,
-            totalReward: outcome.totalReward,
-            baseReward: outcome.baseReward,
-            streakBonus: outcome.streakBonus,
-            masteryBonus: outcome.masteryBonus,
-            performanceBonus: outcome.performanceBonus,
-            focusBonus: outcome.focusBonus,
-            chargeGain: outcome.chargeGain,
-            cratesEarned: outcome.cratesEarned,
-            createdAt,
-          }),
         });
         return outcome;
       },
@@ -321,21 +284,6 @@ export const useGameStore = create<GameState>()(
               [planetCode]: outcome.nextMastery,
             },
             actionLog,
-            bonusHistory: appendBonusHistory(state, {
-              id: createId(),
-              title,
-              detail,
-              planetCode,
-              totalReward: outcome.totalReward,
-              baseReward: outcome.baseReward,
-              streakBonus: outcome.streakBonus,
-              masteryBonus: outcome.masteryBonus,
-              performanceBonus: outcome.performanceBonus,
-              focusBonus: outcome.focusBonus,
-              chargeGain: outcome.chargeGain,
-              cratesEarned: outcome.cratesEarned,
-              createdAt,
-            }),
           },
           getQuestUnlockTarget(questId),
           "Планета открыта после получения награды ключевого квеста.",
@@ -384,21 +332,6 @@ export const useGameStore = create<GameState>()(
               ORBIT_COMMERCE: outcome.nextMastery,
             },
             actionLog,
-            bonusHistory: appendBonusHistory(state, {
-              id: createId(),
-              title: "Получена награда Змейки Халва",
-              detail: `Собрано орбитальных токенов в Змейке Халва: ${score}.`,
-              planetCode: "ORBIT_COMMERCE",
-              totalReward: outcome.totalReward,
-              baseReward: outcome.baseReward,
-              streakBonus: outcome.streakBonus,
-              masteryBonus: outcome.masteryBonus,
-              performanceBonus: outcome.performanceBonus,
-              focusBonus: outcome.focusBonus,
-              chargeGain: outcome.chargeGain,
-              cratesEarned: outcome.cratesEarned,
-              createdAt,
-            }),
           },
           getPlanetRunUnlockTarget("ORBIT_COMMERCE", score),
           "Планета открыта после успешного забега игры Орбиты покупок.",
@@ -447,21 +380,6 @@ export const useGameStore = create<GameState>()(
               CREDIT_SHIELD: outcome.nextMastery,
             },
             actionLog,
-            bonusHistory: appendBonusHistory(state, {
-              id: createId(),
-              title: "Получена награда Кредитного щита",
-              detail: `Счет в реакторе щита: ${score}.`,
-              planetCode: "CREDIT_SHIELD",
-              totalReward: outcome.totalReward,
-              baseReward: outcome.baseReward,
-              streakBonus: outcome.streakBonus,
-              masteryBonus: outcome.masteryBonus,
-              performanceBonus: outcome.performanceBonus,
-              focusBonus: outcome.focusBonus,
-              chargeGain: outcome.chargeGain,
-              cratesEarned: outcome.cratesEarned,
-              createdAt,
-            }),
           },
           getPlanetRunUnlockTarget("CREDIT_SHIELD", score),
           "Планета открыта после успешного забега игры Кредитного щита.",
@@ -505,21 +423,6 @@ export const useGameStore = create<GameState>()(
             detail: `Сигнальный ринг синхронизировал команду после ${score} точек импульса.${outcome.cratesEarned ? ` Контейнер хранилища +${outcome.cratesEarned}.` : ""}`,
             reward: outcome.totalReward,
             planetCode: "SOCIAL_RING",
-            createdAt,
-          }),
-          bonusHistory: appendBonusHistory(state, {
-            id: createId(),
-            title: "Получена награда Социального кольца",
-            detail: `Точек импульса в Сигнальном ринге: ${score}.`,
-            planetCode: "SOCIAL_RING",
-            totalReward: outcome.totalReward,
-            baseReward: outcome.baseReward,
-            streakBonus: outcome.streakBonus,
-            masteryBonus: outcome.masteryBonus,
-            performanceBonus: outcome.performanceBonus,
-            focusBonus: outcome.focusBonus,
-            chargeGain: outcome.chargeGain,
-            cratesEarned: outcome.cratesEarned,
             createdAt,
           }),
         });
@@ -576,21 +479,6 @@ export const useGameStore = create<GameState>()(
               [meta.planetCode]: outcome.nextMastery,
             },
             actionLog,
-            bonusHistory: appendBonusHistory(state, {
-              id: createId(),
-              title: historyTitle,
-              detail: historyDetail,
-              planetCode: meta.planetCode,
-              totalReward: outcome.totalReward,
-              baseReward: outcome.baseReward,
-              streakBonus: outcome.streakBonus,
-              masteryBonus: outcome.masteryBonus,
-              performanceBonus: outcome.performanceBonus,
-              focusBonus: outcome.focusBonus,
-              chargeGain: outcome.chargeGain,
-              cratesEarned: outcome.cratesEarned,
-              createdAt,
-            }),
           },
           getGameUnlockTarget(gameCode, score),
           `Планета открыта после успешного забега игры ${meta.title}.`,
@@ -617,21 +505,6 @@ export const useGameStore = create<GameState>()(
             planetCode: state.selectedPlanet,
             createdAt,
           }),
-          bonusHistory: appendBonusHistory(state, {
-            id: createId(),
-            title: "Открыт контейнер хранилища",
-            detail: "Ручное открытие контейнера за накопленный заряд хранилища.",
-            planetCode: state.selectedPlanet,
-            totalReward: reward,
-            baseReward: reward,
-            streakBonus: 0,
-            masteryBonus: 0,
-            performanceBonus: 0,
-            focusBonus: 0,
-            chargeGain: 0,
-            cratesEarned: 0,
-            createdAt,
-          }),
         });
         return reward;
       },
@@ -656,7 +529,6 @@ export const useGameStore = create<GameState>()(
         planetMastery: state.planetMastery,
         unlockedPlanets: state.unlockedPlanets,
         actionLog: state.actionLog,
-        bonusHistory: state.bonusHistory,
       }),
     },
   ),

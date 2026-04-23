@@ -53,16 +53,42 @@ vi.mock("@/lib/session-store", () => ({
   }),
 }));
 
-import { SnakePage } from "@/pages/SnakePage";
+import { SnakePage, directionFromSwipeDelta, supportsTouchInput } from "@/pages/SnakePage";
 
 function renderSnakePage() {
   return renderToStaticMarkup(createElement(SnakePage));
 }
 
 describe("SnakePage", () => {
+  it("maps horizontal and vertical swipes to directions", () => {
+    expect(directionFromSwipeDelta(48, 6)).toBe("right");
+    expect(directionFromSwipeDelta(-48, 10)).toBe("left");
+    expect(directionFromSwipeDelta(8, -48)).toBe("up");
+    expect(directionFromSwipeDelta(12, 48)).toBe("down");
+  });
+
+  it("ignores short swipes below the minimum distance", () => {
+    expect(directionFromSwipeDelta(18, 4)).toBeUndefined();
+    expect(directionFromSwipeDelta(0, -20)).toBeUndefined();
+  });
+
+  it("treats coarse pointers or touch points as touch input", () => {
+    expect(supportsTouchInput({ coarsePointer: true, maxTouchPoints: 0 })).toBe(true);
+    expect(supportsTouchInput({ coarsePointer: false, maxTouchPoints: 2 })).toBe(true);
+    expect(supportsTouchInput({ coarsePointer: false, maxTouchPoints: 0 })).toBe(false);
+  });
+
   it("marks the on-screen controls panel as hidden on mobile", () => {
     const html = renderSnakePage();
 
     expect(html).toContain("snake-controls-panel snake-controls-panel--desktop");
+  });
+
+  it("renders the start action inside the game board panel", () => {
+    const html = renderSnakePage();
+
+    expect(html).toContain('data-testid="snake-board-panel"');
+    expect(html).toContain('data-testid="snake-launch-button"');
+    expect(html).toMatch(/data-testid="snake-board-panel"[\s\S]*data-testid="snake-launch-button"[\s\S]*snake-grid/);
   });
 });

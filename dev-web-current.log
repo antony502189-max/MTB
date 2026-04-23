@@ -76,3 +76,132 @@
 [2m03:38:37[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/RewardsPage.tsx, /src/styles.css[22m
 [2m03:39:16[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/RewardsPage.test.tsx[22m
 [2m03:40:11[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/RewardsPage.tsx, /src/styles.css[22m
+[2m03:51:02[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.test.ts[22m
+[2m03:54:27[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/router.tsx, /src/styles.css[22m
+[2m03:54:27[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/AiPage.tsx, /src/styles.css[22m
+[2m03:54:27[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/app/router.tsx[22m Could not Fast Refresh ("appLinks" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m03:54:27[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.tsx[22m
+[2m03:54:48[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/FriendsPage.tsx, /src/styles.css[22m
+[2m03:54:48[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/QrPage.tsx, /src/styles.css[22m
+[2m03:54:49[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/FriendsPage.test.tsx[22m
+[2m03:55:49[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/GalaxyPage.tsx, /src/styles.css[22m
+[2m03:55:56[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/GalaxyPage.test.tsx[22m
+[2m03:57:06[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/GalaxyPage.tsx, /src/styles.css[22m
+[2m03:57:22[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/D:\MTB\apps\web\src\pages\ContactsPage.tsx, /src/styles.css[22m
+[2m03:58:07[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/ContactsPage.test.tsx[22m
+[2m03:58:08[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.test.ts[22m
+[2m03:58:23[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mpackage.json[22m
+[2m03:58:45[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/D:\MTB\apps\web\src\pages\ContactsPage.tsx, /src/styles.css[22m
+[2m03:58:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/ContactsPage.test.tsx[22m
+[2m03:58:57[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/D:\MTB\apps\web\src\pages\ContactsPage.tsx, /src/styles.css[22m
+[2m03:58:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32m✨ new dependencies optimized: [33mqrcode.react[32m[39m
+[2m03:58:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32m✨ optimized dependencies changed. reloading[39m
+[2m03:59:01[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/D:\MTB\apps\web\src\pages\ContactsPage.tsx, /src/styles.css[22m
+[2m03:59:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/router.tsx, /src/styles.css[22m
+[2m03:59:21[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/app/router.tsx[22m Could not Fast Refresh ("appLinks" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m03:59:21[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.tsx[22m
+[2m03:59:37[22m [36m[1m[vite][22m[39m [32mvite.config.ts changed, restarting server...[39m
+[2m03:59:37[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
+[2m03:59:38[22m [36m[1m[vite][22m[39m server restarted.
+[2m03:59:57[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/ContactsPage.test.tsx[22m
+[2m03:59:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mpackage.json[22m
+[2m04:00:01[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mpackage.json[22m
+[2m04:00:11[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/ContactsPage.test.tsx[22m
+[2m04:00:14[22m [36m[1m[vite][22m[39m [32mvite.config.ts changed, restarting server...[39m
+[2m04:00:15[22m [36m[1m[vite][22m[39m server restarted.
+[2m04:00:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/ContactsPage.test.tsx[22m
+[2m04:00:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ContactsPage.tsx, /src/styles.css[22m
+[2m04:00:51[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/ContactsPage.test.tsx[22m
+[2m04:01:14[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ContactsPage.tsx, /src/styles.css[22m
+[2m04:01:25[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ContactsPage.tsx, /src/styles.css[22m
+[2m04:01:33[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ContactsPage.tsx, /src/styles.css[22m
+[2m04:01:41[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/ContactsPage.test.tsx[22m
+[2m04:02:08[22m [36m[1m[vite][22m[39m [32mvite.config.ts changed, restarting server...[39m
+[2m04:02:08[22m [36m[1m[vite][22m[39m server restarted.
+[2m04:02:21[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ContactsPage.tsx, /src/styles.css[22m
+[2m04:02:54[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ContactsPage.tsx, /src/styles.css[22m
+[2m04:02:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/ContactsPage.test.tsx[22m
+[2m04:04:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/ContactsPage.test.tsx[22m
+[2m04:05:11[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ContactsPage.tsx, /src/styles.css[22m
+[2m04:05:37[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ContactsPage.tsx, /src/styles.css[22m
+[2m04:05:55[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ContactsPage.tsx, /src/styles.css[22m
+[2m04:08:27[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mpackage.json[22m
+[2m04:08:52[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ContactsPage.tsx, /src/styles.css[22m
+[2m04:09:25[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ContactsPage.tsx, /src/styles.css[22m
+[2m04:12:44[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ContactsPage.tsx, /src/styles.css[22m
+[2m04:12:51[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/ContactsPage.test.tsx[22m
+[2m04:24:31[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/LiveLinksPage.tsx, /src/styles.css[22m
+[2m04:24:31[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/LiveLinksPage.test.tsx[22m
+[2m04:28:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/AiPage.tsx, /src/styles.css[22m
+[2m04:28:25[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/AiPage.tsx, /src/styles.css[22m
+[2m04:28:37[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/AiPage.tsx, /src/styles.css[22m
+[2m04:28:37[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/pages/AiPage.tsx[22m Could not Fast Refresh (new export)
+[2m04:28:37[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/router.tsx, /src/styles.css[22m
+[2m04:28:37[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/app/router.tsx[22m Could not Fast Refresh ("appLinks" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m04:28:37[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.tsx[22m
+[2m04:28:43[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/AiPage.test.tsx[22m
+[2m04:28:57[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/AiPage.tsx, /src/styles.css[22m
+[2m04:32:25[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/LiveLinksPage.test.tsx[22m
+[2m04:32:57[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/LiveLinksPage.tsx, /src/styles.css[22m
+[2m04:36:08[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.test.ts[22m
+[2m04:36:30[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m04:37:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.test.ts[22m
+[2m04:37:42[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m04:39:25[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/router.tsx, /src/styles.css[22m
+[2m04:39:25[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m04:39:25[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.test.ts[22m
+[2m04:39:26[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/app/router.tsx[22m Could not Fast Refresh ("appLinks" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m04:39:26[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.tsx[22m
+[2m04:42:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/AiPage.tsx, /src/styles.css[22m
+[2m04:42:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/AiPage.test.tsx[22m
+[2m04:42:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/pages/AiPage.tsx[22m Could not Fast Refresh ("sanitizeDisplayTokens" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m04:42:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/router.tsx, /src/styles.css[22m
+[2m04:42:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/app/router.tsx[22m Could not Fast Refresh ("appLinks" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m04:42:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.tsx[22m
+[2m04:43:01[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.test.ts[22m
+[2m04:43:11[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m04:47:15[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/SnakePage.test.tsx[22m
+[2m04:47:41[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/SnakePage.tsx, /src/styles.css[22m
+[2m04:48:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/SnakePage.test.tsx[22m
+[2m04:48:58[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/RewardsPage.tsx, /src/styles.css[22m
+[2m04:48:58[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/router.tsx, /src/styles.css, /src/pages/GalaxyPage.tsx, /src/features/games/screens/GameScreen.tsx, /src/pages/GamesPage.tsx, /src/pages/CreditShieldGamePage.tsx, /src/pages/QuestsPage.tsx, /src/pages/RewardsPage.tsx, /src/pages/ReferralsPage.tsx, /src/pages/SnakePage.tsx, /@fs/D:\MTB\apps\web\src\pages\game-page-shared.tsx[22m
+[2m04:48:58[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/RewardsPage.test.tsx[22m
+[2m04:48:58[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m04:48:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/app/router.tsx[22m Could not Fast Refresh ("appLinks" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m04:48:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.tsx[22m
+[2m04:50:49[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/ContactsPage.test.tsx[22m
+[2m04:51:12[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ContactsPage.tsx, /src/styles.css[22m
+[2m04:52:18[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/AiPage.test.tsx[22m
+[2m04:52:28[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/AiPage.tsx, /src/styles.css[22m
+[2m04:56:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/CashbackTetrisPage.tsx, /src/styles.css[22m
+[2m04:58:04[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MobyJumpPage.tsx, /src/styles.css[22m
+[2m04:58:04[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/pages/MobyJumpPage.tsx[22m Could not Fast Refresh (new export)
+[2m04:58:04[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/router.tsx, /src/styles.css[22m
+[2m04:58:05[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/app/router.tsx[22m Could not Fast Refresh ("appLinks" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m04:58:05[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.tsx[22m
+[2m04:58:12[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m04:58:22[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/SocialRingGamePage.tsx, /src/styles.css[22m
+[2m04:58:27[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m04:59:41[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/SocialRingGamePage.test.tsx[22m
+[2m04:59:46[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/CreditShieldGamePage.tsx, /src/styles.css[22m
+[2m04:59:46[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/CreditShieldGamePage.test.tsx[22m
+[2m04:59:58[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/SocialRingGamePage.tsx, /src/styles.css[22m
+[2m05:00:17[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MobyJumpPage.tsx, /src/styles.css[22m
+[2m05:00:17[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/pages/MobyJumpPage.tsx[22m Could not Fast Refresh ("jumpDirectionFromKey" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m05:00:17[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/router.tsx, /src/styles.css[22m
+[2m05:00:17[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/app/router.tsx[22m Could not Fast Refresh ("appLinks" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m05:00:17[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.tsx[22m
+[2m05:01:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/MobyJumpPage.test.tsx[22m
+[2m05:02:06[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MobyJumpPage.tsx, /src/styles.css[22m
+[2m05:02:07[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/pages/MobyJumpPage.tsx[22m Could not Fast Refresh (new export)
+[2m05:02:07[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/router.tsx, /src/styles.css[22m
+[2m05:02:07[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/app/router.tsx[22m Could not Fast Refresh ("appLinks" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m05:02:07[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.tsx[22m
+[2m05:05:37[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/AiPage.tsx, /src/styles.css[22m
+[2m05:05:38[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/pages/AiPage.tsx[22m Could not Fast Refresh ("sanitizeDisplayTokens" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m05:05:38[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/router.tsx, /src/styles.css[22m
+[2m05:05:38[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/app/router.tsx[22m Could not Fast Refresh ("appLinks" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m05:05:38[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.tsx[22m
+[2m05:17:42[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/SocialRingGamePage.tsx, /src/styles.css[22m
+[2m05:17:55[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m05:19:40[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles.css[22m

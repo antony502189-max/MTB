@@ -60,17 +60,23 @@ function renderCreditShieldGamePage() {
 }
 
 describe("CreditShieldGamePage", () => {
-  it("renders the lock button next to the reactor instead of the control panel", () => {
+  it("renders the start and lock buttons next to the reactor instead of the control panel", () => {
     const html = renderCreditShieldGamePage();
+    const startButtonIndex = html.indexOf("Старт реактора");
     const buttonIndex = html.indexOf("Зафиксировать импульс");
     const reactorLabelsIndex = html.indexOf("shield-reactor__labels");
     const meterIndex = html.indexOf("shield-reactor__meter");
+    const rewardIndex = html.indexOf("Забрать награду");
 
+    expect(startButtonIndex).toBeGreaterThan(-1);
     expect(buttonIndex).toBeGreaterThan(-1);
     expect(reactorLabelsIndex).toBeGreaterThan(-1);
     expect(meterIndex).toBeGreaterThan(-1);
+    expect(rewardIndex).toBeGreaterThan(-1);
     expect(meterIndex).toBeLessThan(reactorLabelsIndex);
+    expect(startButtonIndex).toBeGreaterThan(reactorLabelsIndex);
     expect(buttonIndex).toBeGreaterThan(reactorLabelsIndex);
+    expect(startButtonIndex).toBeGreaterThan(rewardIndex);
   });
 
   it("does not render the containers metric card", () => {

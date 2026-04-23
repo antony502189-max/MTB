@@ -11,7 +11,7 @@ vi.mock("@tanstack/react-query", () => ({
           user_id: "u_demo",
           recommended_focus: "Соберите следующий шаг из друзей и контекста.",
           quick_prompts: ["С чего начать?"],
-          summary_chips: ["AI-навигация"],
+          summary_chips: ["AI-навигация", "CREDIT_SHIELD"],
           friend_count: 0,
           pending_invites_count: 0,
         },
@@ -38,7 +38,7 @@ vi.mock("@tanstack/react-query", () => ({
   }),
 }));
 
-import { AiPage } from "@/pages/AiPage";
+import { AiPage, sanitizeDisplayTokens } from "@/pages/AiPage";
 
 function renderAiPage() {
   return renderToStaticMarkup(createElement(MemoryRouter, { initialEntries: ["/app/ai"] }, createElement(AiPage)));
@@ -49,6 +49,12 @@ describe("AiPage", () => {
     const html = renderAiPage();
 
     expect(html).not.toContain("Проверить QR");
+  });
+
+  it("does not render the contacts hero CTA button", () => {
+    const html = renderAiPage();
+
+    expect(html).not.toContain("Открыть контакты");
   });
 
   it("does not render the hero metric cards", () => {
@@ -76,5 +82,23 @@ describe("AiPage", () => {
     expect(html).not.toContain("CTA");
     expect(html).not.toContain("Подключить внешние сигналы");
     expect(html).not.toContain("QR-модуль");
+  });
+
+  it("does not render the active answer panel", () => {
+    const html = renderAiPage();
+
+    expect(html).not.toContain("Активный ответ");
+    expect(html).not.toContain("Что сейчас держать в фокусе");
+  });
+
+  it("filters raw system tokens from AI labels", () => {
+    expect(sanitizeDisplayTokens(["AI-навигация", "CREDIT_SHIELD", "SOCIAL_RING", "QR"])).toEqual(["AI-навигация", "QR"]);
+  });
+
+  it("does not render raw system chips from assistant context", () => {
+    const html = renderAiPage();
+
+    expect(html).toContain("AI-навигация");
+    expect(html).not.toContain("CREDIT_SHIELD");
   });
 });

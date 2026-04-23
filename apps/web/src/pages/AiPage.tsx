@@ -43,6 +43,18 @@ function asStringArray(value: unknown): string[] {
     .filter((entry): entry is string => entry !== null);
 }
 
+function isSystemToken(value: string): boolean {
+  return /^[A-Z0-9]+(?:_[A-Z0-9]+)+$/.test(value);
+}
+
+function isHiddenAiChip(value: string): boolean {
+  return value.trim().toUpperCase() === "CREDIT_SHIELD";
+}
+
+export function sanitizeDisplayTokens(values: string[]): string[] {
+  return values.filter((value) => !isSystemToken(value) && !isHiddenAiChip(value));
+}
+
 function normalizeAssistantContext(value: AssistantContext | null | undefined, userId: string, segment: string): AssistantContext {
   const fallbackPrompts =
     segment === "freelancer"
@@ -71,7 +83,7 @@ function normalizeAssistantContext(value: AssistantContext | null | undefined, u
         ? "Удерживать ровный ритм заданий, чтобы AI подсказывал следующий лучший шаг."
         : "Начать с самых понятных действий и быстро собрать первую серию полезных сигналов.");
 
-  const summaryChips = asStringArray(value?.summary_chips);
+  const summaryChips = sanitizeDisplayTokens(asStringArray(value?.summary_chips));
   const quickPrompts = asStringArray(value?.quick_prompts);
 
   return {
@@ -94,8 +106,8 @@ function normalizeAssistantReply(value: AssistantChatResponse): Omit<HistoryMess
   return {
     message: asNonEmptyString(value?.message) ?? "Ответ получен, но сервер не прислал текст. Попробуйте уточнить запрос.",
     suggestedActions: asStringArray(value?.suggested_actions),
-    relatedModules: asStringArray(value?.related_modules),
-    contextChips: asStringArray(value?.context_chips),
+    relatedModules: sanitizeDisplayTokens(asStringArray(value?.related_modules)),
+    contextChips: sanitizeDisplayTokens(asStringArray(value?.context_chips)),
   };
 }
 
@@ -154,8 +166,8 @@ function readHistory(storageKey: string): HistoryMessage[] {
           createdAt,
           qrPayload: asNonEmptyString(candidate.qrPayload),
           suggestedActions: asStringArray(candidate.suggestedActions),
-          relatedModules: asStringArray(candidate.relatedModules),
-          contextChips: asStringArray(candidate.contextChips),
+          relatedModules: sanitizeDisplayTokens(asStringArray(candidate.relatedModules)),
+          contextChips: sanitizeDisplayTokens(asStringArray(candidate.contextChips)),
         };
       })
       .filter((entry): entry is HistoryMessage => entry !== null)
@@ -184,10 +196,10 @@ function getModuleLink(moduleName: string): { label: string; to: string } | null
   const token = moduleName.toLowerCase();
 
   if (token.includes("friend") || token.includes("social")) {
-    return { label: "Друзья", to: "/app/friends" };
+    return { label: "Контакты", to: "/app/contacts" };
   }
   if (token.includes("qr")) {
-    return { label: "QR", to: "/app/qr" };
+    return { label: "Контакты", to: "/app/contacts" };
   }
   if (token.includes("quest")) {
     return { label: "Квесты", to: "/app/quests" };
@@ -226,7 +238,7 @@ export function AiPage() {
     select: (value) => normalizeAssistantContext(value, userId, segment),
   });
 
-  const assistantContext = assistantContextQuery.data ?? normalizeAssistantContext(EMPTY_CONTEXT, userId, segment);
+  const assistantContext = normalizeAssistantContext(assistantContextQuery.data ?? EMPTY_CONTEXT, userId, segment);
 
   useEffect(() => {
     setHistory(readHistory(storageKey));
@@ -301,7 +313,6 @@ export function AiPage() {
 
   const activePromptCount = assistantContext.quick_prompts.length;
   const pendingAssistantState = chatMutation.isPending ? chatMutation.variables : null;
-  const latestAssistantMessage = [...history].reverse().find((entry) => entry.role === "assistant") ?? null;
 
   return (
     <div className="space-y-6">
@@ -311,11 +322,6 @@ export function AiPage() {
             <h2 className="text-4xl font-semibold leading-[0.95] md:text-6xl">
               {displayName}, AI собирает следующий лучший шаг из контекста, друзей и QR-сценариев.
             </h2>
-            <div className="flex flex-wrap gap-3">
-              <Link className="primary-button inline-flex" to="/app/friends">
-                Открыть друзей
-              </Link>
-            </div>
             <div className="flex flex-wrap gap-2 pt-1">
               {assistantContext.summary_chips.map((chip) => (
                 <span
@@ -375,10 +381,7 @@ export function AiPage() {
               </div>
             ) : null}
 
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <p className="text-sm text-white/56">
-                Ответ возвращает текст, suggested actions, related modules и context chips.
-              </p>
+            <div className="flex flex-wrap items-center justify-end gap-3">
               <button className="primary-button" disabled={chatMutation.isPending || prompt.trim().length === 0} type="submit">
                 {chatMutation.isPending ? "Отправляем…" : "Спросить AI"}
               </button>
@@ -398,17 +401,6 @@ export function AiPage() {
             {assistantContextQuery.isError ? (
               <div className="rounded-[22px] border border-rose-400/25 bg-rose-500/10 px-4 py-4 text-sm text-rose-100">
                 Не удалось загрузить контекст ассистента. Чат все еще доступен, но ответы будут беднее без сводки.
-              </div>
-            ) : null}
-
-            {history.length === 0 ? (
-              <div className="rounded-[26px] border border-white/10 bg-white/[0.035] p-5">
-                <p className="eyebrow">Старт</p>
-                <h4 className="mt-2 text-xl font-semibold">Спросите ассистента о следующем действии</h4>
-                <p className="mt-3 max-w-2xl text-sm text-white/65">
-                  История хранится локально в браузере только для этого пользователя. Ассистент может использовать QR payload,
-                  друзья и текущий фокус из контекста.
-                </p>
               </div>
             ) : null}
 
@@ -469,37 +461,35 @@ export function AiPage() {
                     </div>
                   ) : null}
 
-                  {entry.relatedModules.length > 0 ? (
-                    <div className="mt-5">
-                      <p className="text-xs uppercase tracking-[0.18em] text-white/45">Related modules</p>
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {entry.relatedModules.map((moduleName) => {
-                          const moduleLink = getModuleLink(moduleName);
+                  {(() => {
+                    const relatedLinks = entry.relatedModules
+                      .map((moduleName) => ({ moduleName, moduleLink: getModuleLink(moduleName) }))
+                      .filter(
+                        (entry): entry is { moduleName: string; moduleLink: { label: string; to: string } } =>
+                          entry.moduleLink !== null,
+                      );
 
-                          if (moduleLink) {
-                            return (
-                              <Link
-                                key={`${entry.id}_${moduleName}`}
-                                className="inline-flex break-all rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.14em] text-white/70 transition hover:border-white/20 hover:bg-white/10"
-                                to={moduleLink.to}
-                              >
-                                {moduleLink.label}
-                              </Link>
-                            );
-                          }
+                    if (relatedLinks.length === 0) {
+                      return null;
+                    }
 
-                          return (
-                            <span
+                    return (
+                      <div className="mt-5">
+                        <p className="text-xs uppercase tracking-[0.18em] text-white/45">Related modules</p>
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {relatedLinks.map(({ moduleName, moduleLink }) => (
+                            <Link
                               key={`${entry.id}_${moduleName}`}
-                              className="inline-flex break-all rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.14em] text-white/55"
+                              className="inline-flex break-all rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.14em] text-white/70 transition hover:border-white/20 hover:bg-white/10"
+                              to={moduleLink.to}
                             >
-                              {moduleName}
-                            </span>
-                          );
-                        })}
+                              {moduleLink.label}
+                            </Link>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  ) : null}
+                    );
+                  })()}
                 </div>
               );
             })}
@@ -542,34 +532,6 @@ export function AiPage() {
               ))}
             </div>
           </article>
-
-          <article className="surface-panel">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <p className="eyebrow">Активный ответ</p>
-                <h3 className="mt-2 text-2xl font-semibold">Что сейчас держать в фокусе</h3>
-              </div>
-              <span className="text-xs uppercase tracking-[0.18em] text-white/45">
-                {pendingAssistantState ? "в обработке" : latestAssistantMessage ? "готово" : "ожидает"}
-              </span>
-            </div>
-            <div className="mt-5 rounded-[24px] border border-white/8 bg-white/[0.02] p-4">
-              {pendingAssistantState ? (
-                <p className="text-sm leading-6 text-white/72">
-                  Анализируем запрос
-                  {pendingAssistantState.qr ? " вместе с QR payload" : ""}
-                  …
-                </p>
-              ) : latestAssistantMessage ? (
-                <p className="break-words text-sm leading-6 text-white/78">{latestAssistantMessage.message}</p>
-              ) : (
-                <p className="text-sm leading-6 text-white/60">
-                  Отправьте первый запрос или выберите quick prompt, чтобы получить актуальный ответ ассистента.
-                </p>
-              )}
-            </div>
-          </article>
-
         </div>
       </section>
     </div>

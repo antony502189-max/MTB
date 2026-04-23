@@ -238,16 +238,6 @@ export function CreditShieldGamePage() {
               {!isRunning && !isComplete ? "Готов к стабилизации" : isComplete ? "Забег завершен" : "Щит активен"}
             </h3>
             <p className="min-h-[4.75rem] text-white/62 md:min-h-[3.25rem]">{status}</p>
-            <div className="flex min-h-[3.25rem] flex-wrap gap-3">
-              <button className="primary-button" onClick={launchGame} disabled={isRunning}>
-                {isComplete ? "Запустить снова" : "Старт реактора"}
-              </button>
-              {canResetGame ? (
-                <button className="secondary-button" onClick={resetGame}>
-                  Сбросить
-                </button>
-              ) : null}
-            </div>
             <div className="list-row">
               <div>
                 <p className="text-lg font-medium">Забрать награду</p>
@@ -287,7 +277,15 @@ export function CreditShieldGamePage() {
                 <span>Поздно</span>
               </div>
             </div>
-            <div className="mt-5 flex justify-center">
+            <div className="mt-5 flex flex-wrap justify-center gap-3">
+              <button className="primary-button" onClick={launchGame} disabled={isRunning}>
+                {isComplete ? "Запустить снова" : "Старт реактора"}
+              </button>
+              {canResetGame ? (
+                <button className="secondary-button" onClick={resetGame}>
+                  Сбросить
+                </button>
+              ) : null}
               <button className="secondary-button" onClick={lockPulse} disabled={!isRunning || isComplete}>
                 Зафиксировать импульс
               </button>

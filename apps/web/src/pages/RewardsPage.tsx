@@ -2,40 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { PLANET_META, type PlanetCode } from "@mtb/contracts";
 import { useState } from "react";
 import { api } from "@/lib/api";
-import { useGameStore, type BonusHistoryItem } from "@/lib/game-store";
+import { useGameStore } from "@/lib/game-store";
 import { GAME_CODE_LABELS } from "@/lib/labels";
 import { useSessionStore } from "@/lib/session-store";
 
 const PLANETS: PlanetCode[] = ["ORBIT_COMMERCE", "CREDIT_SHIELD", "SOCIAL_RING"];
-
-function formatBonusEntryCount(count: number) {
-  const mod10 = count % 10;
-  const mod100 = count % 100;
-
-  if (mod10 === 1 && mod100 !== 11) {
-    return `${count} запуск`;
-  }
-
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) {
-    return `${count} запуска`;
-  }
-
-  return `${count} запусков`;
-}
-
-function getBonusHistoryGroups(bonusHistory: BonusHistoryItem[]) {
-  return PLANETS.map((planetCode) => {
-    const entries = bonusHistory.filter((entry) => entry.planetCode === planetCode);
-
-    return {
-      planetCode,
-      entries,
-      latestEntry: entries[0],
-      totalChargeGain: entries.reduce((sum, entry) => sum + entry.chargeGain, 0),
-      totalReward: entries.reduce((sum, entry) => sum + entry.totalReward, 0),
-    };
-  }).filter((group) => group.entries.length > 0);
-}
 
 export function RewardsPage() {
   const { userId } = useSessionStore();
@@ -44,14 +15,12 @@ export function RewardsPage() {
   const vaultCharge = useGameStore((state) => state.vaultCharge);
   const vaultCrates = useGameStore((state) => state.vaultCrates);
   const planetMastery = useGameStore((state) => state.planetMastery);
-  const bonusHistory = useGameStore((state) => state.bonusHistory);
   const openBonusCrate = useGameStore((state) => state.openBonusCrate);
   const [lastCrateReward, setLastCrateReward] = useState<number | null>(null);
   const gameSummaryQuery = useQuery({
     queryKey: ["games-summary", userId],
     queryFn: () => api.getGameSummary(userId),
   });
-  const bonusHistoryGroups = getBonusHistoryGroups(bonusHistory);
 
   return (
     <div className="space-y-6">
@@ -83,7 +52,7 @@ export function RewardsPage() {
         </div>
       </section>
 
-      <section className="grid gap-4 xl:grid-cols-[0.85fr_1.15fr]">
+      <section>
         <article className="surface-panel">
           <p className="eyebrow">Хранилище наград</p>
           <h3 className="mt-2 text-3xl font-semibold">Заряжайте, открывайте, повторяйте</h3>
@@ -120,55 +89,6 @@ export function RewardsPage() {
                 <strong className="text-2xl">{planetMastery[planetCode]}/12</strong>
               </div>
             ))}
-          </div>
-        </article>
-
-        <article className="surface-panel">
-          <div className="mb-5 flex items-center justify-between">
-            <div>
-              <p className="eyebrow">История локальных бонусов</p>
-              <h3 className="text-2xl font-semibold">Каждый запуск прозрачен</h3>
-            </div>
-            <span className="text-sm text-white/55">получено: {bonusHistory.length}</span>
-          </div>
-          <div className="space-y-3">
-            {bonusHistory.length ? (
-              bonusHistoryGroups.map((group) => (
-                <details key={group.planetCode} className="bonus-history-group">
-                  <summary className="bonus-history-group__summary">
-                    <div>
-                      <p className="text-lg font-medium">{PLANET_META[group.planetCode].title}</p>
-                      <p className="text-sm text-white/55">
-                        {formatBonusEntryCount(group.entries.length)} - последняя: {group.latestEntry.title}
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <strong className="text-2xl text-[var(--accent-cyan)]">+{group.totalReward}</strong>
-                      <p className="text-xs text-white/42">Хранилище +{group.totalChargeGain}</p>
-                    </div>
-                  </summary>
-                  <div className="bonus-history-group__details">
-                    {group.entries.map((entry) => (
-                      <div key={entry.id} className="bonus-history-entry">
-                        <div>
-                          <p className="font-medium">{entry.title}</p>
-                          <p className="text-sm text-white/55">{entry.detail}</p>
-                          <p className="bonus-history-entry__breakdown">
-                            База {entry.baseReward} - серия +{entry.streakBonus} - мастерство +{entry.masteryBonus} - результат +{entry.performanceBonus} - фокус +{entry.focusBonus}
-                          </p>
-                        </div>
-                        <div className="text-right">
-                          <strong className="text-lg text-[var(--accent-cyan)]">+{entry.totalReward}</strong>
-                          <p className="text-xs text-white/42">Хранилище +{entry.chargeGain}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </details>
-              ))
-            ) : (
-              <p className="text-sm text-white/60">Заберите награду мини-игры или квеста, чтобы заполнить историю бонусов.</p>
-            )}
           </div>
         </article>
       </section>

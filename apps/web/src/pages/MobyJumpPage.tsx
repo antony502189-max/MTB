@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import { GameHero, gameReward } from "@/pages/game-page-shared";
 
 type Platform = {
@@ -7,6 +7,14 @@ type Platform = {
   y: number;
   boost?: boolean;
 };
+
+type HorizontalDirection = -1 | 0 | 1;
+type TouchInputState = {
+  coarsePointer: boolean;
+  maxTouchPoints: number;
+};
+
+const JUMP_TOUCH_DEAD_ZONE = 0.18;
 
 function makePlatforms(): Platform[] {
   return Array.from({ length: 8 }, (_, index) => ({
@@ -17,6 +25,43 @@ function makePlatforms(): Platform[] {
   }));
 }
 
+export function jumpDirectionFromPointerRatio(ratio: number, deadZone = JUMP_TOUCH_DEAD_ZONE): HorizontalDirection {
+  const clampedRatio = Math.max(0, Math.min(1, ratio));
+  if (clampedRatio <= deadZone) {
+    return -1;
+  }
+  if (clampedRatio >= 1 - deadZone) {
+    return 1;
+  }
+  return 0;
+}
+
+export function jumpDirectionFromKey(key: string): HorizontalDirection | undefined {
+  const normalizedKey = key.toLowerCase();
+  if (normalizedKey === "arrowleft" || normalizedKey === "a") {
+    return -1;
+  }
+  if (normalizedKey === "arrowright" || normalizedKey === "d") {
+    return 1;
+  }
+  return undefined;
+}
+
+export function supportsTouchInput({ coarsePointer, maxTouchPoints }: TouchInputState) {
+  return coarsePointer || maxTouchPoints > 0;
+}
+
+function detectTouchInput() {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  return supportsTouchInput({
+    coarsePointer: window.matchMedia?.("(pointer: coarse)").matches ?? false,
+    maxTouchPoints: window.navigator.maxTouchPoints ?? 0,
+  });
+}
+
 export function MobyJumpPage() {
   const [player, setPlayer] = useState({ x: 48, y: 280, vy: -260 });
   const [platforms, setPlatforms] = useState<Platform[]>(makePlatforms);
@@ -24,16 +69,37 @@ export function MobyJumpPage() {
   const [isRunning, setIsRunning] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const [rewardClaimed, setRewardClaimed] = useState(false);
+  const [usesTouchInput, setUsesTouchInput] = useState(detectTouchInput);
   const [status, setStatus] = useState("Прыгайте по целям, ловите ускоряющие платформы и не падайте ниже экрана.");
-  const directionRef = useRef(0);
+  const directionRef = useRef<HorizontalDirection>(0);
+  const keyboardDirectionsRef = useRef<HorizontalDirection[]>([]);
+  const pointerDirectionRef = useRef<HorizontalDirection>(0);
+  const activePointerIdRef = useRef<number | null>(null);
   const platformsRef = useRef(platforms);
+  const stageRef = useRef<HTMLDivElement | null>(null);
   const baseReward = gameReward(score, 1.1, 6);
 
   useEffect(() => {
     platformsRef.current = platforms;
   }, [platforms]);
 
+  useEffect(() => {
+    setUsesTouchInput(detectTouchInput());
+  }, []);
+
+  function syncDirection() {
+    directionRef.current = pointerDirectionRef.current || keyboardDirectionsRef.current.at(-1) || 0;
+  }
+
+  function resetDirections() {
+    keyboardDirectionsRef.current = [];
+    pointerDirectionRef.current = 0;
+    directionRef.current = 0;
+    activePointerIdRef.current = null;
+  }
+
   function resetRun() {
+    resetDirections();
     setPlayer({ x: 48, y: 280, vy: -260 });
     setPlatforms(makePlatforms());
     setScore(0);
@@ -43,16 +109,79 @@ export function MobyJumpPage() {
     setStatus("Прыгайте по целям, ловите ускоряющие платформы и не падайте ниже экрана.");
   }
 
-  function move(direction: number) {
-    directionRef.current = direction;
+  function setPointerDirection(direction: HorizontalDirection) {
+    pointerDirectionRef.current = direction;
+    syncDirection();
+  }
+
+  function setKeyboardDirection(direction: HorizontalDirection, isPressed: boolean) {
+    const nextDirections = keyboardDirectionsRef.current.filter((value) => value !== direction);
+    if (isPressed) {
+      nextDirections.push(direction);
+    }
+    keyboardDirectionsRef.current = nextDirections;
+    syncDirection();
+  }
+
+  function setPointerDirectionFromClientX(clientX: number) {
+    const stage = stageRef.current;
+    if (!stage) {
+      return;
+    }
+    const bounds = stage.getBoundingClientRect();
+    if (!bounds.width) {
+      return;
+    }
+    const ratio = (clientX - bounds.left) / bounds.width;
+    setPointerDirection(jumpDirectionFromPointerRatio(ratio));
+  }
+
+  function clearPointerDirection(pointerId?: number) {
+    if (pointerId !== undefined && activePointerIdRef.current !== pointerId) {
+      return;
+    }
+    activePointerIdRef.current = null;
+    pointerDirectionRef.current = 0;
+    syncDirection();
+  }
+
+  function handleStagePointerDown(event: ReactPointerEvent<HTMLDivElement>) {
+    if (event.pointerType === "mouse" && event.button !== 0) {
+      return;
+    }
+    activePointerIdRef.current = event.pointerId;
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+    setPointerDirectionFromClientX(event.clientX);
+  }
+
+  function handleStagePointerMove(event: ReactPointerEvent<HTMLDivElement>) {
+    if (activePointerIdRef.current !== event.pointerId) {
+      return;
+    }
+    setPointerDirectionFromClientX(event.clientX);
+  }
+
+  function handleStagePointerEnd(event: ReactPointerEvent<HTMLDivElement>) {
+    if (activePointerIdRef.current !== event.pointerId) {
+      return;
+    }
+    event.currentTarget.releasePointerCapture?.(event.pointerId);
+    clearPointerDirection(event.pointerId);
   }
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "ArrowLeft" || event.key.toLowerCase() === "a") move(-1);
-      if (event.key === "ArrowRight" || event.key.toLowerCase() === "d") move(1);
+      const direction = jumpDirectionFromKey(event.key);
+      if (direction !== undefined) {
+        setKeyboardDirection(direction, true);
+      }
     };
-    const onKeyUp = () => move(0);
+    const onKeyUp = (event: KeyboardEvent) => {
+      const direction = jumpDirectionFromKey(event.key);
+      if (direction !== undefined) {
+        setKeyboardDirection(direction, false);
+      }
+    };
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("keyup", onKeyUp);
     return () => {
@@ -108,6 +237,7 @@ export function MobyJumpPage() {
           setScore((value) => value + Math.floor(lift / 8));
         }
         if (next.y > 370) {
+          resetDirections();
           setIsRunning(false);
           setIsComplete(true);
           setStatus("Прыжок завершен. Заберите награду за высоту и цели.");
@@ -148,18 +278,39 @@ export function MobyJumpPage() {
                 Сбросить
               </button>
             </div>
-            <div className="flex flex-wrap gap-3">
-              <button className="control-button h-[72px] w-[72px]" onPointerDown={() => move(-1)} onPointerLeave={() => move(0)} onPointerUp={() => move(0)}>
-                ←
-              </button>
-              <button className="control-button h-[72px] w-[72px]" onPointerDown={() => move(1)} onPointerLeave={() => move(0)} onPointerUp={() => move(0)}>
-                →
-              </button>
-            </div>
+            <p className="text-sm text-white/58">Стрелки или A/D на клавиатуре. На телефоне ведите пальцем по сцене влево или вправо.</p>
+            {usesTouchInput ? null : (
+              <div className="jump-controls-panel jump-controls-panel--desktop flex flex-wrap gap-3">
+                <button
+                  className="control-button h-[72px] w-[72px]"
+                  onPointerDown={() => setPointerDirection(-1)}
+                  onPointerLeave={() => clearPointerDirection()}
+                  onPointerUp={() => clearPointerDirection()}
+                >
+                  ←
+                </button>
+                <button
+                  className="control-button h-[72px] w-[72px]"
+                  onPointerDown={() => setPointerDirection(1)}
+                  onPointerLeave={() => clearPointerDirection()}
+                  onPointerUp={() => clearPointerDirection()}
+                >
+                  →
+                </button>
+              </div>
+            )}
           </div>
         </article>
         <article className="surface-panel">
-          <div className="jump-stage">
+          <div
+            ref={stageRef}
+            className="jump-stage"
+            data-testid="moby-jump-stage"
+            onPointerCancel={handleStagePointerEnd}
+            onPointerDown={handleStagePointerDown}
+            onPointerMove={handleStagePointerMove}
+            onPointerUp={handleStagePointerEnd}
+          >
             <div className="jump-player" style={{ left: `${player.x}%`, top: player.y }}>
               M
             </div>

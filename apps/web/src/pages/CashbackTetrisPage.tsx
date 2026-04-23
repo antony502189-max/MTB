@@ -245,11 +245,13 @@ export function CashbackTetrisPage() {
                 </button>
               ) : null}
             </div>
-            <div className="snake-controls">
-              <button className="control-button control-button-left" onClick={() => movePiece(-1)}>←</button>
-              <button className="control-button control-button-up" onClick={rotatePiece}>↻</button>
-              <button className="control-button control-button-right" onClick={() => movePiece(1)}>→</button>
-              <button className="control-button control-button-down" onClick={stepDown}>↓</button>
+            <div className="snake-controls-panel snake-controls-panel--desktop">
+              <div className="snake-controls">
+                <button className="control-button control-button-left" onClick={() => movePiece(-1)}>←</button>
+                <button className="control-button control-button-up" onClick={rotatePiece}>↻</button>
+                <button className="control-button control-button-right" onClick={() => movePiece(1)}>→</button>
+                <button className="control-button control-button-down" onClick={stepDown}>↓</button>
+              </div>
             </div>
             <p className="text-sm text-white/58">W - поворот, A/D - движение, S - вниз, Space - быстро вниз. Стрелки тоже работают.</p>
           </div>
