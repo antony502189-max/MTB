@@ -205,3 +205,30 @@
 [2m05:17:42[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/SocialRingGamePage.tsx, /src/styles.css[22m
 [2m05:17:55[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles.css[22m
 [2m05:19:40[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mpackage.json[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/app/router.test.ts[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/router.tsx, /src/styles.css, /src/pages/GalaxyPage.tsx, /src/features/games/screens/GameScreen.tsx, /src/pages/GamesPage.tsx, /src/pages/CreditShieldGamePage.tsx, /src/pages/QuestsPage.tsx, /src/pages/RewardsPage.tsx, /src/pages/ReferralsPage.tsx, /src/pages/SnakePage.tsx, /@fs/D:\MTB\apps\web\src\pages\game-page-shared.tsx, /src/pages/SocialRingGamePage.tsx[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/AiPage.test.tsx[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/app/router.tsx, /src/styles.css[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/AiPage.tsx, /src/styles.css[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/CashbackTetrisPage.tsx, /src/styles.css[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/CreditShieldGamePage.test.tsx[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/CreditShieldGamePage.tsx, /src/styles.css[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/GalaxyPage.tsx, /src/styles.css[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MobyJumpPage.tsx, /src/styles.css[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/RewardsPage.test.tsx[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/RewardsPage.tsx, /src/styles.css[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/SnakePage.test.tsx[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/SnakePage.tsx, /src/styles.css[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/SocialRingGamePage.tsx, /src/styles.css[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [32mvite.config.ts changed, restarting server...[39m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/CashbackTetrisPage.test.tsx[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/ContactsPage.test.tsx[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ContactsPage.tsx, /src/styles.css[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/GalaxyPage.test.tsx[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/LiveLinksPage.test.tsx[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/LiveLinksPage.tsx, /src/styles.css[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/MobyJumpPage.test.tsx[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/SocialRingGamePage.test.tsx[22m
+[2m05:30:50[22m [36m[1m[vite][22m[39m server restarted.

@@ -12,3 +12,11 @@ INFO:     Finished server process [30160]
 INFO:     Started server process [36436]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'apps\api\app\api.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [36436]
+INFO:     Started server process [44540]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
