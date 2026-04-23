@@ -30,30 +30,35 @@ function renderShell(pathname: string) {
 }
 
 describe("router", () => {
-  it("registers the social-ai-qr routes", () => {
+  it("registers the contacts route and keeps legacy social routes as redirects", () => {
     const paths = collectPaths(appRoutes);
 
+    expect(paths).toContain("/app/contacts");
+    expect(paths).toContain("/app/live-links");
     expect(paths).toContain("/app/friends");
     expect(paths).toContain("/app/qr");
     expect(paths).toContain("/app/ai");
   });
 
-  it("exposes top-level navigation links for the new modules", () => {
+  it("exposes one top-level navigation link for contacts", () => {
     const labels = appLinks.map((link) => link.label);
 
-    expect(labels).toContain("Друзья");
-    expect(labels).toContain("QR");
+    expect(labels).toContain("Контакты");
+    expect(labels).toContain("Живые связи");
+    expect(labels).not.toContain("Друзья");
+    expect(labels).not.toContain("QR");
     expect(labels).toContain("AI");
   });
 
   it("exposes a compact mobile bottom nav with overflow destinations", () => {
-    expect(mobileBottomNavItems.map((item) => item.label)).toEqual(["Обзор", "Друзья", "QR", "AI", "Еще"]);
+    expect(mobileBottomNavItems.map((item) => item.label)).toEqual(["Обзор", "Контакты", "AI", "Еще"]);
     expect(mobileOverflowLinks.map((item) => item.label)).toEqual([
       "Планеты",
       "Игры",
       "Лидерборд",
       "Квесты",
       "Награды",
+      "Живые связи",
       "Социальное кольцо",
     ]);
   });

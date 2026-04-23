@@ -184,10 +184,10 @@ function getModuleLink(moduleName: string): { label: string; to: string } | null
   const token = moduleName.toLowerCase();
 
   if (token.includes("friend") || token.includes("social")) {
-    return { label: "Друзья", to: "/app/friends" };
+    return { label: "Контакты", to: "/app/contacts" };
   }
   if (token.includes("qr")) {
-    return { label: "QR", to: "/app/qr" };
+    return { label: "Контакты", to: "/app/contacts" };
   }
   if (token.includes("quest")) {
     return { label: "Квесты", to: "/app/quests" };
@@ -312,8 +312,8 @@ export function AiPage() {
               {displayName}, AI собирает следующий лучший шаг из контекста, друзей и QR-сценариев.
             </h2>
             <div className="flex flex-wrap gap-3">
-              <Link className="primary-button inline-flex" to="/app/friends">
-                Открыть друзей
+              <Link className="primary-button inline-flex" to="/app/contacts">
+                Открыть контакты
               </Link>
             </div>
             <div className="flex flex-wrap gap-2 pt-1">

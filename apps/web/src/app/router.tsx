@@ -12,8 +12,8 @@ const GamesPage = lazy(() => import("@/pages/GamesPage").then((module) => ({ def
 const QuestsPage = lazy(() => import("@/pages/QuestsPage").then((module) => ({ default: module.QuestsPage })));
 const RewardsPage = lazy(() => import("@/pages/RewardsPage").then((module) => ({ default: module.RewardsPage })));
 const ReferralsPage = lazy(() => import("@/pages/ReferralsPage").then((module) => ({ default: module.ReferralsPage })));
-const FriendsPage = lazy(() => import("@/pages/FriendsPage").then((module) => ({ default: module.FriendsPage })));
-const QrPage = lazy(() => import("@/pages/QrPage").then((module) => ({ default: module.QrPage })));
+const ContactsPage = lazy(() => import("@/pages/ContactsPage").then((module) => ({ default: module.ContactsPage })));
+const LiveLinksPage = lazy(() => import("@/pages/LiveLinksPage").then((module) => ({ default: module.LiveLinksPage })));
 const AiPage = lazy(() => import("@/pages/AiPage").then((module) => ({ default: module.AiPage })));
 const PlanetsMapScreen = lazy(() =>
   import("@/features/planets/screens/PlanetsMapScreen").then((module) => ({ default: module.PlanetsMapScreen })),
@@ -73,8 +73,8 @@ export const appLinks: ShellNavLink[] = [
   { to: "/app/leaderboard", label: "Лидерборд" },
   { to: "/app/quests", label: "Квесты" },
   { to: "/app/rewards", label: "Награды" },
-  { to: "/app/friends", label: "Друзья" },
-  { to: "/app/qr", label: "QR" },
+  { to: "/app/contacts", label: "Контакты" },
+  { to: "/app/live-links", label: "Живые связи" },
   { to: "/app/ai", label: "AI" },
   { to: "/app/referrals", label: "Социальное кольцо" },
 ];
@@ -85,7 +85,7 @@ const adminLinks = [
   { to: "/admin/risk", label: "Риски" },
 ];
 
-const mobilePrimaryNavPaths = new Set(["/app/galaxy", "/app/friends", "/app/qr", "/app/ai"]);
+const mobilePrimaryNavPaths = new Set(["/app/galaxy", "/app/contacts", "/app/ai"]);
 
 function findAppLink(to: string) {
   const link = appLinks.find((item) => item.to === to);
@@ -101,8 +101,7 @@ export const mobileOverflowLinks = appLinks.filter((link) => !mobilePrimaryNavPa
 
 export const mobileBottomNavItems: MobileBottomNavItem[] = [
   { kind: "link", ...findAppLink("/app/galaxy") },
-  { kind: "link", ...findAppLink("/app/friends") },
-  { kind: "link", ...findAppLink("/app/qr") },
+  { kind: "link", ...findAppLink("/app/contacts") },
   { kind: "link", ...findAppLink("/app/ai") },
   { kind: "overflow", label: "Еще", destinations: mobileOverflowLinks },
 ];
@@ -305,8 +304,10 @@ export const appRoutes: RouteObject[] = [
       { path: "/app/leaderboard", element: renderLazy(<LeaderboardScreen />) },
       { path: "/app/quests", element: renderLazy(<QuestsPage />) },
       { path: "/app/rewards", element: renderLazy(<RewardsPage />) },
-      { path: "/app/friends", element: renderLazy(<FriendsPage />) },
-      { path: "/app/qr", element: renderLazy(<QrPage />) },
+      { path: "/app/contacts", element: renderLazy(<ContactsPage />) },
+      { path: "/app/live-links", element: renderLazy(<LiveLinksPage />) },
+      { path: "/app/friends", element: <Navigate to="/app/contacts" replace /> },
+      { path: "/app/qr", element: <Navigate to="/app/contacts" replace /> },
       { path: "/app/ai", element: renderLazy(<AiPage />) },
       { path: "/app/referrals", element: renderLazy(<ReferralsPage />) },
       { path: "/app/game/social-ring-signal", element: renderLazy(<GameRouteGuard code="social_ring_signal"><SocialRingGamePage /></GameRouteGuard>) },

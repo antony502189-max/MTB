@@ -1,6 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { PLANET_META, type PlanetCode, type PlanetProgress } from "@mtb/contracts";
-import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { startTransition, useDeferredValue, useEffect, useMemo, useState } from "react";
 import { GalaxyStage } from "@/components/GalaxyStage";
@@ -9,7 +8,7 @@ import { PlanetInspector } from "@/components/PlanetInspector";
 import { api } from "@/lib/api";
 import { PLANET_ACTIONS, PLANET_STRUCTURES } from "@/lib/game-config";
 import { useGameStore } from "@/lib/game-store";
-import { formatCategory, formatEventKind, formatRewardType, formatStatus, SEGMENT_LABELS } from "@/lib/labels";
+import { formatEventKind, SEGMENT_LABELS } from "@/lib/labels";
 import { isPlanetUnlocked, PLANET_UNLOCK_REQUIREMENTS } from "@/lib/planet-unlocks";
 import { useSessionStore } from "@/lib/session-store";
 
@@ -25,13 +24,6 @@ const SPEND_EVENT_KIND: Record<PlanetCode, "partner" | "credit" | "referral"> = 
   SOCIAL_RING: "referral",
 };
 
-function formatWindowEnd(value: string) {
-  return new Intl.DateTimeFormat("ru-RU", {
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(new Date(value));
-}
-
 export function GalaxyPage() {
   const { userId, syncProfile } = useSessionStore();
   const queryClient = useQueryClient();
@@ -44,7 +36,6 @@ export function GalaxyPage() {
   const selectedPlanet = useGameStore((state) => state.selectedPlanet);
   const stardust = useGameStore((state) => state.stardust);
   const structures = useGameStore((state) => state.structures);
-  const actionLog = useGameStore((state) => state.actionLog);
   const totalRuns = useGameStore((state) => state.totalRuns);
   const bestShieldScore = useGameStore((state) => state.bestShieldScore);
   const bestSocialScore = useGameStore((state) => state.bestSocialScore);
@@ -63,14 +54,8 @@ export function GalaxyPage() {
     queryKey: ["profile", userId],
     queryFn: () => api.getProfile(userId),
   });
-  const ledgerQuery = useQuery({
-    queryKey: ["ledger", userId],
-    queryFn: () => api.getRewardLedger(userId),
-  });
   const deferredProfile = useDeferredValue(profileQuery.data);
   const planets = deferredProfile?.planets ?? EMPTY_PLANETS;
-  const liveBoosters = deferredProfile?.active_boosters ?? [];
-  const liveLedger = ledgerQuery.data ?? [];
   const selectedPlanetState = useMemo(
     () => planets.find((planet) => planet.planet_code === selectedPlanet) ?? planets[0],
     [planets, selectedPlanet],
@@ -314,102 +299,6 @@ export function GalaxyPage() {
             }}
           />
         </div>
-      </section>
-
-      <section className="grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
-        <article className="surface-panel">
-          <div className="mb-5 flex min-h-[3.25rem] items-center">
-            <div>
-              <p className="eyebrow">Лента миссий</p>
-              <h3 className="text-2xl font-semibold">Последние действия пилота</h3>
-            </div>
-          </div>
-          <div className="space-y-3">
-            {actionLog.length ? (
-              actionLog.slice(0, 6).map((item) => (
-                <motion.div key={item.id} layout className="list-row">
-                  <div>
-                    <p className="text-lg font-medium">{item.title}</p>
-                    <p className="text-sm text-white/55">{item.detail}</p>
-                  </div>
-                  <div className="text-right">
-                    {item.planetCode ? (
-                      <p className="text-xs uppercase tracking-[0.2em] text-white/42">{PLANET_META[item.planetCode].title}</p>
-                    ) : null}
-                    <strong className={item.reward >= 0 ? "text-2xl text-[var(--accent-cyan)]" : "text-2xl text-white/85"}>
-                      {item.reward >= 0 ? `+${item.reward}` : item.reward}
-                    </strong>
-                  </div>
-                </motion.div>
-              ))
-            ) : (
-              <p className="text-sm text-white/60">Запустите первое действие на сцене, чтобы заполнить ленту миссий.</p>
-            )}
-          </div>
-        </article>
-
-        <article className="surface-panel">
-          <div className="mb-5 flex min-h-[3.25rem] items-center">
-            <div>
-              <p className="eyebrow">Живые связи</p>
-              <h3 className="text-2xl font-semibold">Бустеры и журнал активности</h3>
-            </div>
-          </div>
-          <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
-            <div>
-              <div className="space-y-3">
-                <p className="eyebrow">Активные окна бустеров</p>
-                {liveBoosters.slice(0, 3).map((booster) => (
-                  <div key={booster.booster_id} className="list-row">
-                    <div>
-                      <p className="text-lg font-medium">{formatCategory(booster.category)}</p>
-                      <p className="text-sm text-white/55">До {formatWindowEnd(booster.end_at)}</p>
-                    </div>
-                    <strong className="text-2xl text-[var(--accent-cyan)]">+{booster.boost_rate}%</strong>
-                  </div>
-                ))}
-                {!liveBoosters.length ? (
-                  <div className="list-row list-row--empty">
-                    <div>
-                      <p className="text-lg font-medium">Окно бустера</p>
-                      <p className="text-sm text-white/55">Запустите партнерский сигнал, чтобы открыть первое окно.</p>
-                    </div>
-                    <strong className="status-pill">ожидает</strong>
-                  </div>
-                ) : null}
-              </div>
-            </div>
-
-            <div>
-              <div className="space-y-3">
-                <p className="eyebrow">Последние записи</p>
-                {liveLedger.slice(0, 4).map((entry) => (
-                  <div key={entry.ledger_id} className="list-row">
-                    <div>
-                      <p className="text-lg font-medium">{formatRewardType(entry.reward_type)}</p>
-                      <p className="text-sm text-white/55">{new Date(entry.created_at).toLocaleString("ru-RU")}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className={`text-xs uppercase tracking-[0.18em] ${entry.status === "pending" ? "text-amber-300" : "text-emerald-300"}`}>
-                        {formatStatus(entry.status)}
-                      </p>
-                      <strong className="text-2xl">1 запись</strong>
-                    </div>
-                  </div>
-                ))}
-                {!liveLedger.length ? (
-                  <div className="list-row list-row--empty">
-                    <div>
-                      <p className="text-lg font-medium">Журнал активности</p>
-                      <p className="text-sm text-white/55">Обновится после первого синхронизированного события.</p>
-                    </div>
-                    <strong className="status-pill">ожидает</strong>
-                  </div>
-                ) : null}
-              </div>
-            </div>
-          </div>
-        </article>
       </section>
 
       {!onboardingComplete ? (
