@@ -37,6 +37,12 @@ const KEY_DIRECTION_BY_KEY: Partial<Record<string, Direction>> = {
 
 type Point = { x: number; y: number };
 type Direction = "up" | "down" | "left" | "right";
+type TouchInputState = {
+  coarsePointer: boolean;
+  maxTouchPoints: number;
+};
+
+const SNAKE_MIN_SWIPE_DISTANCE = 24;
 
 function nextHead(head: Point, direction: Direction): Point {
   if (direction === "up") return { x: head.x, y: head.y - 1 };
@@ -60,6 +66,30 @@ function rewardFromScore(score: number) {
 
 function directionFromKeyboardEvent(event: KeyboardEvent): Direction | undefined {
   return KEY_DIRECTION_BY_CODE[event.code] ?? KEY_DIRECTION_BY_KEY[event.key.toLowerCase()];
+}
+
+export function directionFromSwipeDelta(
+  deltaX: number,
+  deltaY: number,
+  minDistance = SNAKE_MIN_SWIPE_DISTANCE,
+): Direction | undefined {
+  const absX = Math.abs(deltaX);
+  const absY = Math.abs(deltaY);
+  const dominantDistance = Math.max(absX, absY);
+
+  if (dominantDistance < minDistance) {
+    return undefined;
+  }
+
+  if (absX >= absY) {
+    return deltaX >= 0 ? "right" : "left";
+  }
+
+  return deltaY >= 0 ? "down" : "up";
+}
+
+export function supportsTouchInput({ coarsePointer, maxTouchPoints }: TouchInputState) {
+  return coarsePointer || maxTouchPoints > 0;
 }
 
 export function SnakePage() {
